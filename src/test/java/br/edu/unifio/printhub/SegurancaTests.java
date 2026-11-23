@@ -55,6 +55,13 @@ class SegurancaTests {
     }
 
     @Test
+    void soAdminConsultaUsuarios() throws Exception {
+        mvc.perform(get("/usuarios").with(httpBasic("consumidor", "consumidor123")))
+                .andExpect(status().isForbidden());
+        mvc.perform(get("/usuarios").with(httpBasic("admin", "admin123"))).andExpect(status().isOk());
+    }
+
+    @Test
     void consumidorNaoAceitaPedido403() throws Exception {
         mvc.perform(post("/pedidos/1/aceitar").with(httpBasic("consumidor", "consumidor123")))
                 .andExpect(status().isForbidden());

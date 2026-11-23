@@ -45,7 +45,10 @@ public class ConfiguracaoSeguranca {
                 .authorizeHttpRequests(regras -> regras
                         .requestMatchers("/error").permitAll()
 
-                        // Consultas: qualquer usuário autenticado.
+                        // Usuários têm e-mail e telefone (dados pessoais): só o ADMIN vê e gerencia.
+                        .requestMatchers("/usuarios/**").hasRole(ADMIN)
+
+                        // Demais consultas: qualquer usuário autenticado.
                         .requestMatchers(HttpMethod.GET, "/**").authenticated()
 
                         // Só o produtor decide se aceita ou rejeita o pedido que recebeu.
@@ -61,7 +64,7 @@ public class ConfiguracaoSeguranca {
                         .requestMatchers("/produtos/**").hasAnyRole(PRODUTOR, ADMIN)
 
                         // Cadastros administrativos e operação dos lotes.
-                        .requestMatchers("/categorias/**", "/usuarios/**", "/pontos-retirada/**", "/lotes/**")
+                        .requestMatchers("/categorias/**", "/pontos-retirada/**", "/lotes/**")
                         .hasRole(ADMIN)
 
                         .anyRequest().authenticated());
