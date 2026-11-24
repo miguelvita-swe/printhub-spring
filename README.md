@@ -70,7 +70,8 @@ Sete entidades:
 | Bean Validation e `@Valid` | `dtos/*Requisicao.java` e os `@Valid` nos controllers |
 | Exceção própria e `@RestControllerAdvice` | `RecursoNaoEncontradoException`, `RegraNegocioException` e `TratadorDeErros` (400, 404 e 409) |
 | Consultas personalizadas (2+) | `ProdutoRepositorio` (por categoria, por nome, estoque baixo com `@Query`), `PedidoRepositorio` (por status, por consumidor com `@Query`), `LoteRepositorio` e `UsuarioRepositorio` |
-| Spring Security HTTP Basic, 2+ usuários e 2+ perfis | `seguranca/ConfiguracaoSeguranca.java` (3 usuários, 3 perfis) |
+| Spring Security HTTP Basic, 2+ usuários e 2+ perfis | `seguranca/ConfiguracaoSeguranca.java` (3 usuários, 3 perfis); aceitar e rejeitar pedido são só do PRODUTOR |
+| Diferença entre 401 e 403 | `seguranca/RespostasDeSeguranca.java` (respostas em JSON); pastas 10 e 11 da coleção do Postman |
 | Funcionalidade específica do PI | lote coletivo: `servicos/LoteServico.java` e `servicos/RateioEntrega.java` |
 | Testes no Postman | `postman/projeto-integrador.postman_collection.json` |
 
@@ -129,7 +130,7 @@ A API fica em `http://localhost:8080`. A cada inicialização as tabelas são re
 ### 4. Testar no Postman
 
 1. No Postman: **Import** → escolha `postman/projeto-integrador.postman_collection.json`.
-2. A coleção já tem as variáveis (`baseUrl` e os usuários de teste) e a autenticação configurada em cada pasta.
+2. A coleção já tem as variáveis (`baseUrl` e os usuários e senhas de teste) e a autenticação HTTP Basic configurada em cada requisição.
 3. Com a API recém-iniciada, rode as requisições **na ordem das pastas**. Cada requisição tem a resposta salva como exemplo (**Save Response**).
 
 ### 5. Testes automatizados (opcional)

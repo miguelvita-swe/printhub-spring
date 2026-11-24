@@ -6,7 +6,7 @@ Base: `http://localhost:8080`. Todas as rotas exigem **HTTP Basic**. O corpo é 
 
 | Usuário | Senha | Perfil | O que pode fazer |
 |---|---|---|---|
-| `admin` | `admin123` | ADMIN | Tudo: categorias, usuários, pontos, lotes, pedidos e confirmação de retirada |
+| `admin` | `admin123` | ADMIN | Categorias, usuários, pontos, lotes, produtos, pedidos e confirmação de retirada. Não aceita nem rejeita pedidos (só o PRODUTOR) |
 | `produtor` | `produtor123` | PRODUTOR | Consultar, anunciar produtos, aceitar e rejeitar pedidos |
 | `consumidor` | `consumidor123` | CONSUMIDOR | Consultar, fazer, alterar e cancelar pedidos |
 
